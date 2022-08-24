@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/tricycle_mobile_robot/devel
+
+Name: waypoint_tracking_controller
+Description: Description of waypoint_tracking_controller
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: roscpp rospy std_msgs geometry_msgs nav_msgs tf

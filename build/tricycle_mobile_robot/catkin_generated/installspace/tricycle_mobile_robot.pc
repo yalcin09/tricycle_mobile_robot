@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/tricycle_mobile_robot/install
+
+Name: tricycle_mobile_robot
+Description: Description of tricycle_mobile_robot
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

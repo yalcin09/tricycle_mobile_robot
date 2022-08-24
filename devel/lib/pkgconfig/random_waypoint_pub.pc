@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/tricycle_mobile_robot/devel
+
+Name: random_waypoint_pub
+Description: Description of random_waypoint_pub
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: geometry_msgs nav_msgs roscpp rospy std_msgs

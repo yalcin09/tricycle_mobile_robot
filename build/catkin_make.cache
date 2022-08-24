@@ -1,0 +1,2 @@
+random_waypoint_pub:tricycle_mobile_robot:waypoint_tracking_controller
+-DCATKIN_DEVEL_PREFIX=/home/ubuntu/tricycle_mobile_robot/devel -DCMAKE_INSTALL_PREFIX=/home/ubuntu/tricycle_mobile_robot/install -G Unix Makefiles
