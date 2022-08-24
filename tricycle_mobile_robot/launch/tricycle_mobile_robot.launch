@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<launch>
+   <arg name="model"/>
+
+   <arg name="paused" default="false"/>
+   <arg name="use_sim_time" default="true"/>
+   <arg name="gui" default="true"/>
+   <arg name="headless" default="false"/>
+   <arg name="debug" default="false"/>
+
+   <include file="$(find gazebo_ros)/launch/empty_world.launch">
+      <arg name="debug" value="$(arg debug)"/>
+      <arg name="gui" value="$(arg gui)"/>
+      <arg name="paused" value="$(arg paused)"/>
+      <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+      <arg name="headless" value="$(arg headless)"/>
+   </include>
+
+   <param name="robot_description" textfile="$(find tricycle_mobile_robot)/urdf/tricycle_mobile_robot.urdf" />
+
+   <param name="use_gui" value="True" />
+   <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen">
+      <param name="publish_frequency" type="double" value="20.0"/>
+      <remap from="/joint_states" to="/tricycle_mobile_robot/joint_states" />
+   </node>
+   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model tricycle_mobile_robot -x 0 -y 0 -z 0 -param robot_description"/>
+
+   <rosparam file="$(find tricycle_mobile_robot)/config/tricycle_mobile_robot.yaml" command="load" />
+
+   <!-- Mobil robot joint kontrol tanımlama -->
+   <node name="controller_spawner" pkg="controller_manager" type="spawner" ns="/tricycle_mobile_robot" args="joint_state_controller steer_joint_controller speed_joint_controller" />
+
+   
+
+   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find tricycle_mobile_robot)/rviz/tricycle_mobile_robot.rviz" />
+</launch>

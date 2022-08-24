@@ -1,0 +1,12 @@
+<launch>
+
+   <rosparam file="$(find tricycle_mobile_robot)/config/tricycle_mobile_robot.yaml" command="load" />
+
+   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+      output="screen" ns="/tricycle_mobile_robot" args="joint_state_controller steer_joint_controller wheel_joint_controller" />
+
+   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+      <remap from="/joint_states" to="/tricycle_mobile_robot/joint_states" />
+   </node>
+
+</launch>
